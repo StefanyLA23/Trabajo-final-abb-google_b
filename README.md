@@ -28,12 +28,12 @@ No se requiere Node.js, npm, Live Server ni un segundo servidor.
 
 ## Datos del equipo
 
-- Integrante 1: ______________________________
-- Integrante 2: ______________________________
-- Integrante 3: ______________________________
-- Grupo: ____________________________________
-- Docente: __________________________________
-- Fecha de entrega: _________________________
+- Integrante 1: Estefania lotero Arevalo
+- Integrante 2: Nicole D'yana Urbiñez
+- Integrante 3: Juan Felipe Ocampo
+- Grupo: Veterinaria sabaneta
+- Docente: Miguel Hurtado Ortiz
+- Fecha de entrega: 11-11-2026
 
 ## Compilar y ejecutar en PowerShell de VS Code
 
