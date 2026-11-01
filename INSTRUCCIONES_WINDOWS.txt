@@ -1,0 +1,41 @@
+GOOGLE ABB - EJECUCION EN WINDOWS (VS CODE)
+================================================
+
+1. EXTRAER el ZIP (no abrir el proyecto directamente dentro del ZIP).
+2. Abrir en VS Code la carpeta Trabajo-final-abb-google que contiene Main.java, terminos.csv y web.
+3. Abrir Terminal > Nueva terminal (PowerShell).
+4. Comprobar que hay un JDK 17 o superior instalado (17 o 21 recomendado):
+
+   java -version
+   javac -version
+
+5. COMPILAR desde esa misma carpeta (sin pasar a out):
+
+   javac --release 17 -encoding UTF-8 -Xlint:all -Werror -d out *.java
+
+6. EJECUTAR servidor de backend + frontend:
+
+   java -cp out ServidorWeb
+
+7. Abrir Chrome/Edge en http://localhost:8080
+8. Para parar el servidor: Ctrl+C en PowerShell.
+
+PRUEBAS (opcionales, por separado; servidor detenido si usa el mismo puerto):
+
+   java -cp out PruebasABB
+   java -cp out PruebasHTTP
+   java -cp out ExperimentoABB
+
+MENU DE CONSOLA (alternativo al servidor web):
+
+   java -cp out Main
+
+NOTAS:
+- El frontend se sirve DESDE Java; NO abrir web/index.html directamente con doble clic.
+- No se necesita npm, Node.js, Angular, React ni ejecutar scripts .ps1.
+- La carpeta contiene un CSV de 30 registros que se carga al inicio.
+- Las modificaciones viven en memoria hasta que se cierre; CSV original intacto.
+- Si java o javac no existe en la terminal, instalar un JDK 17/21 y revisar PATH.
+- Si el puerto 8080 ya se usa, cerrar la otra aplicación/servidor en ese puerto.
+- No borrar los archivos .java, el CSV ni la carpeta web.
+- Documentación detallada: README.md.

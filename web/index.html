@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explora un árbol binario de búsqueda real: autocompletado, popularidad, recorridos y experimentos. Proyecto académico ITM.">
+  <title>Google ABB — Índice de autocompletado</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='11' height='11' rx='3' fill='%234285f4'/%3E%3Crect x='18' y='3' width='11' height='11' rx='3' fill='%23ea4335'/%3E%3Crect x='3' y='18' width='11' height='11' rx='3' fill='%23fbbc04'/%3E%3Crect x='18' y='18' width='11' height='11' rx='3' fill='%2334a853'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <aside class="sidebar" aria-label="Navegación principal">
+    <a class="brand" href="#inicio" aria-label="Google ABB, inicio"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Google <strong>ABB</strong><small>Laboratorio de búsqueda</small></span></a>
+    <div class="nav-caption">EXPLORA EL ÍNDICE</div>
+    <nav>
+      <button class="nav-item active" data-section="inicio" aria-controls="view-inicio" aria-current="page"><span class="nav-icon" aria-hidden="true">⌕</span>Inicio y buscador</button>
+      <button class="nav-item" data-section="administracion" aria-controls="view-administracion"><span class="nav-icon" aria-hidden="true">▤</span>Administración</button>
+      <button class="nav-item" data-section="arbol" aria-controls="view-arbol"><span class="nav-icon" aria-hidden="true">⑂</span>Árbol ABB<span class="nav-pill">SVG</span></button>
+      <button class="nav-item" data-section="consultas" aria-controls="view-consultas"><span class="nav-icon" aria-hidden="true">⇄</span>Consultas y recorridos</button>
+      <button class="nav-item" data-section="datos" aria-controls="view-datos"><span class="nav-icon" aria-hidden="true">▥</span>Datos y experimento</button>
+    </nav>
+    <div class="sidebar-note"><span class="mini-tree" aria-hidden="true">⑂</span><strong>Aprender, nodo a nodo.</strong><p>Un índice real. Cada operación, una oportunidad para explorar.</p><span class="tag">Java 17 · ABB propio</span></div>
+    <div class="sidebar-footer"><span class="itm-mark">ITM</span><span>Estructura de Datos<small>Proyecto académico</small></span></div>
+  </aside>
+
+  <div class="app-shell">
+    <header class="topbar"><div class="breadcrumb">Laboratorio <span>/</span> <strong id="breadcrumb">Inicio y buscador</strong></div><div class="topbar-actions"><span id="connection" class="connection"><i></i>Conectando…</span><button id="refresh" class="icon-button" title="Actualizar datos" aria-label="Actualizar datos">↻</button></div></header>
+    <main id="contenido" tabindex="-1">
+      <div id="feedback" class="feedback" role="status" hidden><span id="feedback-text"></span><button id="close-feedback" aria-label="Cerrar mensaje">×</button></div>
+
+      <section id="view-inicio" data-panel="inicio">
+        <div class="hero">
+          <span class="eyebrow"><span class="live-dot"></span> UN BUSCADOR, DESDE LA RAÍZ</span>
+          <div class="google-word" aria-hidden="true"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span><b>ABB</b></div>
+          <h1>Google ABB — Índice de autocompletado</h1>
+          <p class="academic-subtitle">Proyecto académico | Estructura de Datos | ITM</p>
+          <form id="search-form" class="search-form" role="search" autocomplete="off">
+            <label class="sr-only" for="search-input">Término de búsqueda</label>
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input id="search-input" type="search" maxlength="200" placeholder="Empieza con una idea… por ejemplo, java" required aria-controls="suggestions" aria-expanded="false" aria-autocomplete="list">
+            <button class="button primary" type="submit">Buscar <span aria-hidden="true">↗</span></button>
+            <div id="suggestions" class="suggestions" hidden><div id="suggestion-list"></div><p id="suggestion-note"></p></div>
+          </form>
+          <div class="search-hint">Prueba con <button data-prefix="ja">ja</button><button data-prefix="med">med</button><button data-prefix="clima">clima</button><span>Las sugerencias vienen del ABB.</span></div>
+          <div id="search-result" class="search-result" aria-live="polite" hidden></div>
+        </div>
+
+        <div class="section-heading"><div><span class="eyebrow">EL ÍNDICE EN UN VISTAZO</span><h2>Pequeños datos, grandes conexiones.</h2></div><span class="badge neutral">En memoria</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon blue">▤</span><div><span class="stat-label">Términos en el índice</span><strong data-stat="total">—</strong><small>Claves únicas</small></div></article>
+          <article class="stat-card"><span class="stat-icon green">↥</span><div><span class="stat-label">Altura del árbol</span><strong data-stat="altura">—</strong><small>Medida en aristas</small></div></article>
+          <article class="stat-card"><span class="stat-icon yellow">♧</span><div><span class="stat-label">Nodos hoja</span><strong data-stat="hojas">—</strong><small>Sin hijos</small></div></article>
+          <article class="stat-card"><span class="stat-icon red">⑂</span><div><span class="stat-label">Nodos internos</span><strong data-stat="internos">—</strong><small>Con al menos un hijo</small></div></article>
+        </div>
+        <div class="home-grid">
+          <article class="card"><div class="card-heading"><div><span class="eyebrow">LO QUE MÁS SE BUSCA</span><h2>Tendencias del índice</h2></div><button class="text-button" data-go="consultas">Ver consultas ↗</button></div><div id="home-top" class="top-list"><p class="muted">Cargando términos populares…</p></div></article>
+          <article class="card guide-card"><span class="eyebrow">DE LA IDEA A LA ESTRUCTURA</span><h2>Una búsqueda.<br>Tres formas de entenderla.</h2><div class="guide-step"><span class="blue">01</span><div><strong>Escribe y descubre</strong><p>El prefijo guía la búsqueda y descarta ramas.</p></div></div><div class="guide-step"><span class="green">02</span><div><strong>Sigue las conexiones</strong><p>Explora la raíz, sus hijos y el camino recorrido.</p></div></div><div class="guide-step"><span class="yellow">03</span><div><strong>Comprueba el resultado</strong><p>Consulta recorridos, popularidad y comparaciones.</p></div></div><button class="button secondary wide" data-go="arbol">Explorar el árbol <span aria-hidden="true">→</span></button></article>
+        </div>
+      </section>
+
+      <section id="view-administracion" data-panel="administracion" hidden>
+        <div class="page-heading"><span class="eyebrow">CADA TÉRMINO CUENTA</span><h1>Administración de términos</h1><p>Inserta, consulta y actualiza el índice. La estructura se actualiza con cada cambio.</p></div>
+        <div class="admin-grid">
+          <article class="card"><div class="card-title"><span class="number-mark blue">01</span><div><h2>Insertar término</h2><p>Un duplicado incrementa su popularidad en uno.</p></div></div>
+            <form id="insert-form" class="form-grid"><label class="full">Término<input name="termino" required maxlength="200" placeholder="Por ejemplo, inteligencia artificial"></label><label>Búsquedas iniciales<input name="busquedas" type="number" min="0" max="2147483647" step="1" value="0" required></label><label>Categoría<input name="categoria" list="categories" required maxlength="200" placeholder="tecnologia"></label><label class="full">Fecha de última búsqueda<input name="fecha" type="date" required></label><button class="button primary full" type="submit">＋ Insertar término</button></form>
+          </article>
+          <article class="card"><div class="card-title"><span class="number-mark green">02</span><div><h2>Consultar término</h2><p>Consulta sus datos sin aumentar el contador.</p></div></div><form id="admin-search-form" class="stack-form"><label>Término exacto<input name="termino" required maxlength="200" placeholder="Por ejemplo, java"></label><button class="button secondary" type="submit">Consultar registro</button></form><div id="admin-search-result" class="result-box" aria-live="polite"><p class="empty-text">Los datos del término aparecerán aquí.</p></div></article>
+          <article class="card"><div class="card-title"><span class="number-mark yellow">03</span><div><h2>Actualizar datos</h2><p>La clave se conserva para proteger el orden del ABB.</p></div></div><form id="update-form" class="form-grid"><label class="full">Seleccionar término <span class="label-note">Clave inmutable</span><select name="clave" id="update-key" required><option value="">Selecciona un término</option></select></label><label>Nuevo contador<input name="busquedas" type="number" min="0" max="2147483647" step="1" required></label><label>Categoría<input name="categoria" list="categories" required maxlength="200"></label><label class="full">Fecha de última búsqueda<input name="fecha" type="date" required></label><button class="button secondary full" type="submit">Guardar cambios</button></form></article>
+          <article class="card"><div class="card-title"><span class="number-mark red">04</span><div><h2>Eliminar término</h2><p>La eliminación conserva las relaciones de orden.</p></div></div><form id="delete-form" class="stack-form"><label>Seleccionar término<select name="clave" id="delete-key" required><option value="">Selecciona un término</option></select></label><div id="delete-info" class="soft-note">Selecciona un término para conocer su tipo de nodo.</div><button class="button danger" type="submit">Eliminar término</button></form><div class="deletion-cases"><span>Hoja</span><span>Un hijo</span><span>Dos hijos</span></div><p class="caption">El mismo algoritmo recursivo resuelve los tres casos, incluida la raíz.</p></article>
+        </div>
+        <datalist id="categories"><option value="tecnologia"></option><option value="noticias"></option><option value="deportes"></option><option value="entretenimiento"></option><option value="salud"></option></datalist>
+      </section>
+
+      <section id="view-arbol" data-panel="arbol" hidden>
+        <div class="page-heading"><span class="eyebrow">DEL CÓDIGO A LAS CONEXIONES</span><h1>El árbol, tal como es.</h1><p>Cada enlace representa una relación real del ABB Java. Selecciona un nodo para explorarlo.</p></div>
+        <div class="tree-layout"><article class="card tree-card"><div class="tree-toolbar"><div><strong>Árbol binario de búsqueda</strong><span id="tree-summary" class="caption">Cargando estructura…</span></div><div class="zoom-controls"><button id="zoom-out" class="icon-button" aria-label="Alejar árbol">−</button><output id="zoom-label">100 %</output><button id="zoom-in" class="icon-button" aria-label="Acercar árbol">＋</button><button id="zoom-fit" class="button compact secondary">Ajustar</button></div></div><div id="tree-viewport" class="tree-viewport" tabindex="0" aria-label="Área desplazable del árbol"><svg id="tree-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Estructura real del árbol binario de búsqueda"></svg><p id="tree-empty" class="tree-empty" hidden>El árbol está vacío. Inserta un término o restaura el CSV.</p></div><div class="tree-legend"><span><i class="legend-root"></i>Raíz</span><span><i class="legend-selected"></i>Seleccionado</span><span><i class="legend-visited"></i>Visitado</span><span class="legend-tip">Desplázate para explorar ↔ ↕</span></div></article>
+          <aside class="tree-side"><article class="card node-detail"><span class="eyebrow">DETALLE DEL NODO</span><div id="node-detail"><div class="detail-placeholder">⑂<h2>Un nodo, una historia.</h2><p>Selecciona cualquier término del árbol para ver sus atributos y relaciones.</p></div></div></article><article class="card path-card"><h2>Sigue una búsqueda</h2><p class="caption">Visualiza el camino sin cambiar la popularidad.</p><form id="path-form" class="stack-form"><label class="sr-only" for="path-input">Término del camino</label><input id="path-input" name="termino" required maxlength="200" placeholder="Por ejemplo, java"><button class="button secondary wide" type="submit">Mostrar camino →</button></form><label class="speed-control" for="speed">Pausa entre nodos <output id="speed-label">550 ms</output><input id="speed" type="range" min="150" max="1200" step="50" value="550"></label><p id="animation-status" class="caption" role="status">Elige una búsqueda o un recorrido.</p><button id="stop-animation" class="text-button">Limpiar resaltado</button></article></aside>
+        </div>
+      </section>
+
+      <section id="view-consultas" data-panel="consultas" hidden>
+        <div class="page-heading"><span class="eyebrow">DISTINTOS CAMINOS, EL MISMO ÍNDICE</span><h1>Consultas y recorridos</h1><p>Descubre el orden, encuentra vecinos y explora los límites del árbol.</p></div>
+        <article class="card traversal-card"><div class="card-heading"><div><h2>Recorrer el árbol</h2><p class="caption" id="traversal-explanation">Inorden: izquierda, raíz, derecha. Produce el orden alfabético.</p></div><button id="animate-traversal" class="button secondary compact" disabled>▶ Ver en el árbol</button></div><form id="traversal-form" class="inline-form"><label class="sr-only" for="traversal-order">Tipo de recorrido</label><select id="traversal-order" name="orden"><option value="inorden">Inorden</option><option value="preorden">Preorden</option><option value="postorden">Postorden</option><option value="niveles">Por niveles</option></select><button class="button primary" type="submit">Ejecutar recorrido</button></form><ol id="traversal-result" class="sequence"><li class="empty-text">Selecciona un recorrido para ver su secuencia.</li></ol></article>
+        <div class="query-grid">
+          <article class="card"><div class="card-heading"><h2>Estadísticas</h2><button id="query-stats" class="text-button">Actualizar ↻</button></div><dl class="query-stats"><div><dt>Términos</dt><dd data-stat="total">—</dd></div><div><dt>Altura</dt><dd data-stat="altura">—</dd></div><div><dt>Hojas</dt><dd data-stat="hojas">—</dd></div><div><dt>Internos</dt><dd data-stat="internos">—</dd></div></dl><p class="caption">La raíz está en el nivel 0. La altura del árbol vacío es −1.</p></article>
+          <article class="card"><div class="card-heading"><h2>Extremos alfabéticos</h2><button id="query-extremes" class="text-button">Consultar ↗</button></div><div id="extremes-result" class="result-box"><p class="empty-text">El mínimo está más a la izquierda; el máximo, más a la derecha.</p></div></article>
+          <article class="card"><h2>Nivel de un término</h2><form id="level-form" class="stack-form"><label>Término<input name="termino" required maxlength="200" placeholder="medellin"></label><button class="button secondary" type="submit">Consultar nivel</button></form><div id="level-result" class="query-result" aria-live="polite"></div></article>
+          <article class="card"><h2>Predecesor y sucesor</h2><form id="neighbors-form" class="stack-form"><label>Término de referencia<input name="termino" required maxlength="200" placeholder="medellin"></label><button class="button secondary" type="submit">Encontrar vecinos</button></form><div id="neighbors-result" class="query-result" aria-live="polite"></div></article>
+          <article class="card range-card"><div class="card-heading"><div><h2>Búsqueda por rango</h2><p class="caption">Límites incluidos y poda de ramas fuera del intervalo.</p></div><span class="badge green">Con poda</span></div><form id="range-form" class="range-form"><label>Desde<input name="desde" required maxlength="200" placeholder="java"></label><label>Hasta<input name="hasta" required maxlength="200" placeholder="python"></label><button class="button secondary" type="submit">Consultar rango</button></form><div id="range-result" class="query-result" aria-live="polite"></div></article>
+        </div>
+        <article class="card popular-card"><div class="card-heading"><div><span class="eyebrow">POPULARIDAD, NO ORDEN ALFABÉTICO</span><h2>Top 5 de términos más buscados</h2></div><button id="query-top" class="text-button">Actualizar ↻</button></div><div id="query-top-list" class="top-list"></div><p class="caption">En caso de empate, el término alfabéticamente menor aparece primero.</p></article>
+      </section>
+
+      <section id="view-datos" data-panel="datos" hidden>
+        <div class="page-heading"><span class="eyebrow">LOS DATOS DETRÁS DEL ÍNDICE</span><h1>Datos y experimento</h1><p>Conoce el origen del árbol y observa por qué el orden de inserción importa.</p></div>
+        <div class="data-grid"><article class="card dataset-card"><div class="card-heading"><span class="file-icon">CSV</span><span id="load-badge" class="badge green">Cargando…</span></div><h2>terminos.csv</h2><p>El conjunto original se carga en el ABB en memoria, conservando el orden y los contadores de cada fila.</p><div class="dataset-number"><strong id="csv-count">—</strong><span>registros originales</span></div><div class="column-tags"><code>termino</code><code>busquedas</code><code>categoria</code><code>fecha</code></div><button id="load-status" class="button secondary wide">Consultar estado de carga</button></article><article class="card"><h2>Un nuevo punto de partida</h2><p class="muted">Estas acciones afectan únicamente al árbol de esta sesión web. El archivo original permanece intacto.</p><div class="reset-action"><div><strong>Restaurar datos originales</strong><p>Reemplaza el árbol por los registros del CSV. Repetir la carga no acumula popularidad.</p></div><button id="restore-data" class="button primary">Restaurar CSV</button></div><div class="reset-action"><div><strong>Reiniciar con un árbol vacío</strong><p>Retira todos los términos en memoria para demostrar el caso vacío.</p></div><button id="empty-data" class="button danger">Vaciar árbol</button></div><p class="caption">Ambas acciones requieren confirmación. La consola y la web tienen sesiones independientes.</p></article></div>
+        <article class="card experiment-card"><div class="card-heading"><div><span class="eyebrow">MISMO CONJUNTO, DISTINTA ESTRUCTURA</span><h2>¿Qué cambia al insertar en orden?</h2></div><button id="run-experiment" class="button primary">Ejecutar experimento ↗</button></div><p class="muted">Java construye dos árboles independientes con el CSV: uno en su orden original y otro en orden alfabético. El índice de la aplicación no cambia.</p><div class="table-scroll"><table><caption class="sr-only">Comparación de los dos órdenes de inserción del ABB</caption><thead><tr><th>Orden de inserción</th><th>Nodos</th><th>Altura</th><th>Comparaciones de inserción</th><th>Comparaciones de búsqueda, total</th><th>Media</th><th>Máximo</th><th>Ausente</th></tr></thead><tbody id="experiment-body"><tr><td colspan="8" class="empty-text">Ejecuta el experimento para obtener mediciones reales.</td></tr></tbody></table></div><div id="experiment-extra" class="caption"></div><div class="experiment-notes"><div><span class="number-mark blue">↳</span><strong>Una comparación, un nodo</strong><p>Se cuenta cada <code>compareTo</code> contra un nodo no nulo. Inserción y búsqueda tienen contadores separados.</p></div><div><span class="number-mark yellow">↥</span><strong>El orden cambia la altura</strong><p>Sin balanceo, insertar claves alfabéticamente forma una cadena. La búsqueda puede pasar de O(log n) a O(n).</p></div></div></article>
+      </section>
+      <footer class="main-footer"><span>Google ABB <i></i> Un proyecto para entender cómo se conectan los datos.</span><span>ITM · Estructura de Datos</span></footer>
+    </main>
+  </div>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-description"><form method="dialog"><span class="confirm-icon" aria-hidden="true">!</span><h2 id="confirm-title">Confirmar operación</h2><p id="confirm-description"></p><div class="dialog-actions"><button class="button secondary" value="cancelar">Cancelar</button><button id="confirm-accept" class="button danger" value="confirmar">Confirmar</button></div></form></dialog>
+  <noscript>Activa JavaScript para utilizar la interfaz del ABB.</noscript>
+</body>
+</html>
